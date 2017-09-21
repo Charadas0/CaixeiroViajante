@@ -1,6 +1,6 @@
 package caixeiroviajante;
 /*
-Trabalho de Inteligência Artificial 2017/2
+Trabalho de Inteligência Artificial 2017/2 - Algoritmos Genéticos
 Alunos Rafael Feiten e Ramires Lara
 Professor: Dr. Marcelo Azambuja
 */
