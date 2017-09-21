@@ -1,9 +1,10 @@
 package caixeiroviajante;
+/*
+Trabalho de Inteligência Artificial 2017/2
+Alunos Rafael Feiten e Ramires Lara
+Professor: Dr. Marcelo Azambuja
+*/
 
-/**
- *
- * @author Rafael
- */
 public class CaixeiroViajante {
 
     public static void main(String[] args) {
