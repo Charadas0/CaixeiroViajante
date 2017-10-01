@@ -42,11 +42,7 @@ public class Inicializador {
         cidades.add(Inicializador.setCidade(24, "São Paulo"));
         cidades.add(Inicializador.setCidade(25, "Teresina"));
         cidades.add(Inicializador.setCidade(26, "Vitória"));
-        
-        for (int i = 0; i < cidades.size(); i++) {
-            
-        }
-        
+                
         return cidades;
     }
     
