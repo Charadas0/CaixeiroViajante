@@ -63,7 +63,6 @@ public class Inicializador {
         
         switch(idCidade)
         {
-            //distancias.add(setDistanciaCidade(idCidade, , ));
             case 1:
                 distancias.add(setDistanciaCidade(idCidade, 2, 2079));
                 distancias.add(setDistanciaCidade(idCidade, 3, 1578));
