@@ -1,10 +1,12 @@
 package caixeiroviajante;
-
 import java.util.Random;
-
-public class AlgoritmoGenetico {
-
-	public static int NUMERO_CIDADES = 8;
+/**
+ *
+ * @author Rafael
+ */
+public class algoritmo {
+        //public static int NUMERO_CIDADES = 8;
+	public static int NUMERO_CIDADES = 5;
 	public static int NUMERO_POPULACAO = 10;
 
 	public static void main(String[] args) {
