@@ -5,8 +5,7 @@ import java.util.Random;
  * @author Rafael
  */
 public class algoritmo {
-        //public static int NUMERO_CIDADES = 8;
-	public static int NUMERO_CIDADES = 5;
+	public static int NUMERO_CIDADES = 8;
 	public static int NUMERO_POPULACAO = 10;
 
 	public static void main(String[] args) {
@@ -63,8 +62,7 @@ public class algoritmo {
 
 	}
 
-	public static void renovarCromossomos(int[][] cromossomos,
-			int[] resultados, float taxaMortalidade) {
+	public static void renovarCromossomos(int[][] cromossomos, int[] resultados, float taxaMortalidade) {
 
 		int inicioExcluidos = (int) (taxaMortalidade * 10);
 
@@ -199,8 +197,7 @@ public class algoritmo {
 		return crom_valido;
 	}
 
-	private static void imprimir(int[][] cromossomos, int[] resultados,
-			String[] cidades) {
+	private static void imprimir(int[][] cromossomos, int[] resultados, String[] cidades) {
 		int i, i2;
 		for (i = 0; i < NUMERO_POPULACAO; i++) {
 			for (i2 = 0; i2 < NUMERO_CIDADES; i2++) {
@@ -211,8 +208,7 @@ public class algoritmo {
 		}
 	}
 
-	private static void calcularResultado(int[][] cromossomos,
-			int[] resultados, int[][] mapa) {
+	private static void calcularResultado(int[][] cromossomos, int[] resultados, int[][] mapa) {
 		int i, i2;
 		// calculando o resultado
 		for (i = 0; i < NUMERO_POPULACAO; i++) {
