@@ -25,7 +25,7 @@ public class algoritmo {
 				{ 31, 19, 8, 91, 34, 19, 0, 59 },
 				{ 11, 33, 29, 10, 82, 32, 59, 0 } };
 
-		String[] cidades = { "A", "B", "C", "D", "E", "F", "G", "H" };
+		String[] cidades = { "Alfa", "Beta", "C", "D", "E", "F", "G", "H" };
 
 		int[][] cromossomos = new int[NUMERO_POPULACAO][NUMERO_CIDADES];
 		int[] resultados = new int[NUMERO_POPULACAO];
@@ -58,7 +58,7 @@ public class algoritmo {
 			System.out.print(cidades[cromossomos[i][i2]] + " => ");
 		}
 		System.out.print(cidades[cromossomos[i][0]] + " ");
-		System.out.println(" Resultado: " + resultados[i]);
+		System.out.println(" \n\nResultado: " + resultados[i]);
 
 	}
 
@@ -82,8 +82,7 @@ public class algoritmo {
 				pai1 = new Random().nextInt(inicioExcluidos);
 				do {
 					pai2 = new Random().nextInt(inicioExcluidos);
-				} while ((pai1 == pai2)
-						&& (resultados[pai1] != resultados[pai2]));
+				} while ((pai1 == pai2) && (resultados[pai1] != resultados[pai2]));
 
 				// pegando 3 caracteristicas do pai 1 aleatoriamente
 				for (i2 = 0; i2 < (int) NUMERO_CIDADES / 4; i2++) {
@@ -95,9 +94,8 @@ public class algoritmo {
 				for (i2 = 0; i2 < (int) NUMERO_CIDADES / 4; i2++) {
 					int pos = new Random().nextInt(NUMERO_CIDADES);
 					if (c_tmp[pos] == -1) {
-						if (valorValidoNoCromossomo(cromossomos[pai2][pos],
-								c_tmp)) {
-							c_tmp[pos] = cromossomos[pai2][pos];
+						if (valorValidoNoCromossomo(cromossomos[pai2][pos], c_tmp)){
+                                                    c_tmp[pos] = cromossomos[pai2][pos];
 						}
 					}
 				}
@@ -134,7 +132,7 @@ public class algoritmo {
 
 				// gerando cromossomo - ok
 				for (i2 = 0; i2 < NUMERO_CIDADES; i2++) {
-					c_tmp[i2] = valorValidoNoCromossomo(c_tmp);
+					c_tmp[i2] = valorValidoNoCromossomo(c_tmp); // monta uma sequencia aleatoria de cidades
 				}
 				crom_valido = cromossomoValido(c_tmp, cromossomos);
 			}
