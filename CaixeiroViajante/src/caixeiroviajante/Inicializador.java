@@ -13,8 +13,8 @@ import java.util.List;
  * @author ramir
  */
 public class Inicializador {
-    
-    public static List getCidades () {
+
+    public static List getCidades() {
         List cidades = new ArrayList<Cidade>();
         cidades.add(Inicializador.setCidade(1, "Aracajú"));
         cidades.add(Inicializador.setCidade(2, "Belém"));
@@ -42,27 +42,26 @@ public class Inicializador {
         cidades.add(Inicializador.setCidade(24, "São Paulo"));
         cidades.add(Inicializador.setCidade(25, "Teresina"));
         cidades.add(Inicializador.setCidade(26, "Vitória"));
-                
+
         return cidades;
     }
-    
+
     public static Cidade setCidade(int id, String nome) {
         Cidade cidade = new Cidade();
         cidade.idCidade = id;
         cidade.nomeCidade = nome;
-        
+
         List distancias = new ArrayList<DistanciaCidades>();
         distancias = getDistancias(id);
         cidade.distancias = distancias;
-                
+
         return cidade;
     }
-    
+
     public static List getDistancias(int idCidade) {
         List distancias = new ArrayList<DistanciaCidades>();
-        
-        switch(idCidade)
-        {
+
+        switch (idCidade) {
             case 1:
                 distancias.add(setDistanciaCidade(idCidade, 2, 2079));
                 distancias.add(setDistanciaCidade(idCidade, 3, 1578));
@@ -739,16 +738,16 @@ public class Inicializador {
                 distancias.add(setDistanciaCidade(idCidade, 25, 2171));
                 break;
         }
-        
+
         return distancias;
     }
-    
+
     public static DistanciaCidades setDistanciaCidade(int idCidade, int idCidadeDestino, int distancia) {
         DistanciaCidades distanciaCidades = new DistanciaCidades();
         distanciaCidades.idCidadeOrigem = idCidade;
         distanciaCidades.idCidadeDestino = idCidadeDestino;
         distanciaCidades.distancia = distancia;
-        
+
         return distanciaCidades;
     }
 }

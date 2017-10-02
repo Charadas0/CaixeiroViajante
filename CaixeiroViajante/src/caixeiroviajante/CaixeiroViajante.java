@@ -1,5 +1,6 @@
 package caixeiroviajante;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -39,6 +40,7 @@ public class CaixeiroViajante {
                 }
                 
             } while (idCidadeOrigem == 0 || idCidadeOrigem > 26);
+
             
             // Chamada do algoritmo
         }
