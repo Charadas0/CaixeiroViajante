@@ -16,6 +16,7 @@ public class CaixeiroViajante {
     public static void main(String[] args) {
 
         List cidades = Inicializador.getCidades();
+        int idCidadeOrigem = 0;
         
         if (cidades != null) {
             System.out.println("Escolha a cidade de origem:");
@@ -24,8 +25,6 @@ public class CaixeiroViajante {
                 Cidade cidade = (Cidade)cidades.get(i);
                 System.out.println(cidade.idCidade + " - " + cidade.nomeCidade);
             }
-            
-            int idCidadeOrigem = 0;
             
             do {
                 try {
