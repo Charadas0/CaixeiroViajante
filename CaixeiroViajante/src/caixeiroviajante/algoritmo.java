@@ -10,14 +10,14 @@ Professor: Dr. Marcelo Azambuja
 public class algoritmo {
 
     public static int NUMERO_CIDADES = 26;
-    public static int NUMERO_POPULACAO = 10;
+    public static int NUMERO_POPULACAO = 100;
 
-    public static void main(String[] args) {
+    public static void Genetico(int valor_inicial) {
 
         // definicoes iniciais
-        boolean mostrarEvolucao = true;
+        boolean mostrarEvolucao = false;
         float taxaMortalidade = (float) 0.5;
-        int numeroEvolucoes = 3000;
+        int numeroEvolucoes = 5000;
 
         // matriz de adjacencia
         int[][] mapa = {
@@ -37,7 +37,7 @@ public class algoritmo {
             {5215, 5298, 3951, 785, 3490, 3051, 2357, 4036, 4443, 5763, 3291, 5808, 5491, 0, 5985, 4141, 4563, 901, 5698, 1445, 4374, 5009, 5335, 3971, 5267, 4476},
             {788, 2108, 2348, 6770, 2422, 3534, 3543, 3365, 3662, 537, 2618, 185, 572, 5985, 0, 2345, 4066, 4998, 297, 5533, 2625, 1126, 1607, 2947, 1171, 2178},
             {1662, 1283, 1690, 4926, 973, 1785, 1784, 2036, 2336, 2035, 874, 2253, 1851, 4141, 2345, 0, 2747, 2970, 2058, 3764, 2124, 1454, 1386, 1776, 1401, 1401},
-            {3296, 3852, 1712, 5348, 2027, 1518, 2206, 711, 476, 4242, 1847, 3889, 3572, 4563, 4066, 2747, 0,3662,3779, 4196, 1553, 3090, 3891, 1109, 3804, 2001},
+            {3296, 3852, 1712, 5348, 2027, 1518, 2206, 711, 476, 4242, 1847, 3889, 3572, 4563, 4066, 2747, 0, 3662, 3779, 4196, 1553, 3090, 3891, 1109, 3804, 2001},
             {4230, 4397, 3050, 1686, 2589, 2150, 1456, 3135, 3442, 4862, 2390, 4822, 4505, 901, 4998, 2970, 3662, 0, 4712, 544, 3473, 4023, 4434, 3070, 4366, 3575},
             {501, 2074, 2061, 6483, 2135, 3247, 3255, 3078, 3375, 800, 2332, 120, 285, 5698, 297, 2058, 3779, 4712, 0, 5243, 2338, 839, 1573, 2660, 1137, 1831},
             {4763, 4931, 3584, 2230, 3123, 2684, 1990, 3669, 3976, 5396, 2924, 5356, 5039, 1445, 5533, 3764, 4196, 544, 5243, 0, 4007, 4457, 4968, 3604, 4900, 4109},
@@ -54,7 +54,7 @@ public class algoritmo {
         int[][] cromossomos = new int[NUMERO_POPULACAO][NUMERO_CIDADES];
         int[] resultados = new int[NUMERO_POPULACAO];
 
-        gerarCromossomosAleatoriamente(cromossomos);
+        gerarCromossomosAleatoriamente(cromossomos, valor_inicial);
         calcularResultado(cromossomos, resultados, mapa);
         ordenar(cromossomos, resultados);
         if (mostrarEvolucao) {
@@ -63,11 +63,11 @@ public class algoritmo {
 
         int i;
         for (i = 0; i < numeroEvolucoes; i++) {
-            renovarCromossomos(cromossomos, resultados, taxaMortalidade);
+            renovarCromossomos(cromossomos, resultados, taxaMortalidade,valor_inicial);
             calcularResultado(cromossomos, resultados, mapa);
             ordenar(cromossomos, resultados);
             if (mostrarEvolucao) {
-                System.out.println("Geracao: " + (i + 1));
+                System.out.println("\n\nGERAÇÃO: " + (i + 1));
                 imprimir(cromossomos, resultados, cidades);
             }
         }
@@ -87,13 +87,13 @@ public class algoritmo {
 
     }
 
-    public static void renovarCromossomos(int[][] cromossomos, int[] resultados, float taxaMortalidade) {
+    public static void renovarCromossomos(int[][] cromossomos, int[] resultados, float taxaMortalidade, int inicial) {
 
         int inicioExcluidos = (int) (taxaMortalidade * 10);
 
         int i, i2 = 0;
 
-        for (i = inicioExcluidos; i < 10; i++) {
+        for (i = inicioExcluidos; i < NUMERO_POPULACAO; i++) {
 
             boolean valido = false;
 
@@ -109,18 +109,26 @@ public class algoritmo {
                     pai2 = new Random().nextInt(inicioExcluidos);
                 } while ((pai1 == pai2) && (resultados[pai1] != resultados[pai2]));
 
-                // pegando 3 caracteristicas do pai 1 aleatoriamente
-                for (i2 = 0; i2 < (int) NUMERO_CIDADES / 4; i2++) {
+                // pegando 8 caracteristicas do pai 1 aleatoriamente
+                for (i2 = 0; i2 <  8; i2++) {
                     int pos;
                     pos = new Random().nextInt(NUMERO_CIDADES);
-                    c_tmp[pos] = cromossomos[pai1][pos];
+                    if (i2 == 0) {
+                        c_tmp[i2] = inicial;
+                    } else {
+                        c_tmp[pos] = cromossomos[pai1][pos];
+                    }
                 }
-                // pegando restante do pai 2
-                for (i2 = 0; i2 < (int) NUMERO_CIDADES / 4; i2++) {
+                // pegando 8 caracteristicas do pai 2
+                for (i2 = 0; i2 < 8 / 4; i2++) {
                     int pos = new Random().nextInt(NUMERO_CIDADES);
                     if (c_tmp[pos] == -1) {
                         if (valorValidoNoCromossomo(cromossomos[pai2][pos], c_tmp)) {
-                            c_tmp[pos] = cromossomos[pai2][pos];
+                            if (i2 == 0) {
+                                c_tmp[i2] = inicial;
+                            } else {
+                                c_tmp[pos] = cromossomos[pai2][pos];
+                            }
                         }
                     }
                 }
@@ -129,7 +137,9 @@ public class algoritmo {
                 for (i2 = 0; i2 < NUMERO_CIDADES; i2++) {
                     if (c_tmp[i2] == -1) {
                         int crom_temp = valorValidoNoCromossomo(c_tmp);
-                        c_tmp[i2] = crom_temp;
+                        if (i2 != 0) {
+                            c_tmp[i2] = crom_temp;
+                        }
                     }
                 }
 
@@ -143,7 +153,7 @@ public class algoritmo {
 
     }
 
-    private static int[][] gerarCromossomosAleatoriamente(int[][] cromossomos) {
+    private static int[][] gerarCromossomosAleatoriamente(int[][] cromossomos, int inicial) {
 
         // inicializando cromossomos aleatoriamente
         int[] c_tmp = new int[NUMERO_CIDADES];
@@ -157,7 +167,11 @@ public class algoritmo {
 
                 // gerando cromossomo - ok
                 for (i2 = 0; i2 < NUMERO_CIDADES; i2++) {
-                    c_tmp[i2] = valorValidoNoCromossomo(c_tmp); // monta uma sequencia aleatoria de cidades
+                    if (i2 == 0) {
+                        c_tmp[i2] = inicial;
+                    } else {
+                        c_tmp[i2] = valorValidoNoCromossomo(c_tmp); // monta uma sequencia aleatoria de cidades
+                    }
                 }
                 crom_valido = cromossomoValido(c_tmp, cromossomos);
             }
@@ -252,11 +266,11 @@ public class algoritmo {
     private static void ordenar(int[][] cromossomos, int[] resultados) {
         // ordenando
         int i, i2;
-        for (i = 0; i < 10; i++) {
-            for (i2 = i; i2 < 10; i2++) {
+        for (i = 0; i < NUMERO_POPULACAO; i++) {
+            for (i2 = i; i2 < NUMERO_POPULACAO; i2++) {
                 if (resultados[i] > resultados[i2]) {
                     int vTmp;
-                    int[] vvTmp = new int[10];
+                    int[] vvTmp = new int[NUMERO_POPULACAO];
                     vTmp = resultados[i];
                     resultados[i] = resultados[i2];
                     resultados[i2] = vTmp;

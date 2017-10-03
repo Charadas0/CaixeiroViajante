@@ -42,7 +42,7 @@ public class CaixeiroViajante {
             } while (idCidadeOrigem == 0 || idCidadeOrigem > 26);
 
             
-            // Chamada do algoritmo
+            algoritmo.Genetico(idCidadeOrigem-1);
         }
     }
 }
